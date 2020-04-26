@@ -2032,9 +2032,10 @@ if text == 'السورس' or text == 'يورس' or text == 'يا سورس' then
 Text = [[
 تنصيب بوتك ع سورس ˹M𝒂𝒓𝒓𝒔𝒐𝒏࿅ راسلني
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-♻️¦ BOT @IZ77BOT
-💻¦ MT   @GGGGGT 
-📢¦ CH   @GGGGGT2
+♻️¦ [بوت المحظورين](t.me/IZ77BOT)
+💻¦ [مطـور الـسـورس](t.me/GGGGGT)
+📢¦ [قناه رمزيات نبذة](t.me/GGGGGT2)
+🏚¦ [كروب دعم المطور](https://t.me/joinchat/HyfmkE1Bq_NSnJ04WPQjxA)
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ]]
 send(msg.chat_id_, msg.id_,Text)
@@ -8741,6 +8742,23 @@ end -- end msg
 end --end 
 --------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback(data)  -- clback
+if data.ID == "UpdateChannel" then 
+if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
+database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
+local NameChat = chat.title_
+local IdChat = msg.chat_id_
+Text = '🗑️¦ تم طرد البوت من المجموعه\n'..
+'\n📥¦ اسم المجموعه {['..NameChat..']}'..
+'\n🛑¦ ايدي المجموعه {`'..IdChat..'`}'..
+'\n'
+sendText(SUDO,Text,0,'md')
+
+
+end,nil) 
+end
+end
+
 if data.ID == "UpdateNewMessage" then  -- new msg
 msg = data.message_
 text = msg.content_.text_
